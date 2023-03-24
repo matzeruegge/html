@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Index Page</title>
+  </head>
+  <body>
+    <h1>Index Page</h1>
+    <ul id="file-list">
+      <!-- Links will be created dynamically here -->
+    </ul>
+
+    <script>
+      // Get a list of all HTML files in the current directory
+      fetch('./')
+        .then(response => response.text())
+        .then(data => {
+          const parser = new DOMParser();
+          const html = parser.parseFromString(data, 'text/html');
+          const files = Array.from(html.querySelectorAll('a')).map(link => link.href).filter(href => href.endsWith('.html') && !href.endsWith('index.html'));
+
+          // Create links to each file
+          const fileList = document.getElementById('file-list');
+          for (const file of files) {
+            const link = document.createElement('a');
+            link.href = file;
+            link.innerText = file.replace(/^.*[\\\/]/, '').replace('.html', '');
+            const listItem = document.createElement('li');
+            listItem.appendChild(link);
+            fileList.appendChild(listItem);
+          }
+        });
+    </script>
+  </body>
+</html>
