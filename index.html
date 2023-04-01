@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Index Page</title>
-  </head>
-  <body>
-    <h1>Index Page</h1>
-    <ul id="file-list">
-      <!-- Links will be created dynamically here -->
-    </ul>
-
-    <script>
-      // Get a list of all HTML files in the current directory
-      fetch('.')
-        .then(response => response.text())
-        .then(data => {
-          const parser = new DOMParser();
-          const html = parser.parseFromString(data, 'text/html');
-          const files = Array.from(html.querySelectorAll('a')).map(link => link.href).filter(href => href.endsWith('.html') && !href.endsWith('index.html'));
-
-          // Create links to each file
-          const fileList = document.getElementById('file-list');
-          for (const file of files) {
-            const link = document.createElement('a');
-            link.href = file;
-            link.innerText = file.split('/').pop().replace('.html', '');
-            const listItem = document.createElement('li');
-            listItem.appendChild(link);
-            fileList.appendChild(listItem);
-          }
-        });
-    </script>
-  </body>
+<head>
+	<title>My Website</title>
+</head>
+<body>
+	<h1>My Website</h1>
+	<p>Check out these sub-pages:</p>
+	<ul>
+		<li><a href="pv_info_0.html">PV Info 0</a></li>
+		<li><a href="pv_info_1.html">PV Info 1</a></li>
+		<li><a href="pv_info_2.html">PV Info 2</a></li>
+		<li><a href="pv_info_3.html">PV Info 3</a></li>
+		<li><a href="pv_info_4.html">PV Info 4</a></li>
+		<li><a href="pv_info_5.html">PV Info 5</a></li>
+		<li><a href="stromverbrauch_0.html">Stromverbrauch 0</a></li>
+		<li><a href="stromverbrauch_1.html">Stromverbrauch 1</a></li>
+		<li><a href="stromverbrauch_2.html">Stromverbrauch 2</a></li>
+		<li><a href="stromverbrauch_3.html">Stromverbrauch 3</a></li>
+		<li><a href="stromverbrauch_4.html">Stromverbrauch 4</a></li>
+		<li><a href="stromverbrauch_5.html">Stromverbrauch 5</a></li>
+	</ul>
+</body>
 </html>
